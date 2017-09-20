@@ -22,3 +22,5 @@ Route::get('/reservations/{client_id}', 'RoomsController@checkAvailableRooms')->
 Route::post('/reservations/{client_id}', 'RoomsController@checkAvailableRooms')->name('check_room');
 
 Route::get('/book/room/{client_id}/{room_id}/{date_in}/{date_out}', 'ReservationsController@bookRoom')->name('book_room');
+
+Route::get('/bookings/{client_id}', 'ReservationsController@show')->name('show_bookings');
