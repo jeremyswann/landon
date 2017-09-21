@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Title as Title;
-use App\Client as Client;
+use App\Models\Title as Title;
+use App\Models\Client as Client;
 
 class ClientController extends Controller
 {

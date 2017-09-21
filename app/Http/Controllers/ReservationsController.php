@@ -44,6 +44,12 @@ class ReservationsController extends Controller
         return redirect()->route('clients');
         return view('reservations/bookRoom');
     }
+
+    private function getRoomName()
+    {
+
+    }
+
     public function show($client_id)
     {
         $client = $this->clientModel->findOrFail($client_id);
@@ -52,15 +58,18 @@ class ReservationsController extends Controller
         $reservations = $client->reservations;
 //        dd($reservations);
 
-        $room_id = $reservations->get('room_id');
-        dd($room_id);
+//        $room_ids = $reservations->get('room_id');
+//        dd($reservationsRoom_id);
 
-        $room = $this->roomModel->findOrFail('id', $room_id)->name;
-//        dd($room);
+//        $clientRooms = $this->roomModel->findOrFail('id', $room_ids);
+//            dd($room_name);
+//        $room_names = $clientRooms->name;
 
         $data = [];
-        $data['clients'] = $client;
-        $data['rooms'] = $room;
+        $data['name'] = $client->name;
+        $data['last_name'] = $client->last_name;
+        $data['title'] = $client->title;
+//        $data['room_names'] = $room_names;
         $data['bookings'] = $reservations;
 
         return view('bookings/show', $data);

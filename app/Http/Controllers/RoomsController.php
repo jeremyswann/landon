@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Client;
-use App\Room;
+use App\Models\Client;
+use App\Models\Room;
 
 class RoomsController extends Controller
 {
     //
+
     public function checkAvailableRooms($client_id, Request $request)
     {
         $dateFrom = $request->input('dateFrom');
