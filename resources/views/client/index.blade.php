@@ -28,6 +28,7 @@
                 <td>
                     <a class="btn btn-outline-secondary" href="{{ route('show_client', ['client_id' => $client->id ]) }}">EDIT</a>
                     <a class="btn btn-outline-warning" href="{{ route('check_room', ['client_id' => $client->id ]) }}">BOOK A ROOM</a>
+                    <a class="btn btn-outline-success" href="{{ route('show_bookings', ['client_id' => $client->id ]) }}">BOOKINGS</a>
                 </td>
             </tr>
             @endforeach
