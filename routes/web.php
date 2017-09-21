@@ -24,3 +24,29 @@ Route::post('/reservations/{client_id}', 'RoomsController@checkAvailableRooms')-
 Route::get('/book/room/{client_id}/{room_id}/{date_in}/{date_out}', 'ReservationsController@bookRoom')->name('book_room');
 
 Route::get('/bookings/{client_id}', 'ReservationsController@show')->name('show_bookings');
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here lies the RESTful Dingo API Routes, arr...
+|
+*/
+
+// Version Groups
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1', function ($api) {
+
+});
+
+// Endpoints
+$api->version('v1', function ($api) {
+    $api->get('users/{id}', 'App\Http\Controllers\UserController@show');
+});
+
+
+// Named Routes And Generating URLs
+$api->get('users/{id}', ['as' => 'users.index', 'uses' => 'Api\v1\UserController@show']);
+app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('users.index');
