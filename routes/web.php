@@ -35,18 +35,9 @@ Route::get('/bookings/{client_id}', 'ReservationsController@show')->name('show_b
 |
 */
 
-// Version Groups
 $api = app('Dingo\Api\Routing\Router');
-$api->version('v1', function ($api) {
 
+$api->version('v1', [], function ($api) {
+
+    $api->get('users', 'App\Http\Controllers\Api\UserController@getUsers');
 });
-
-// Endpoints
-$api->version('v1', function ($api) {
-    $api->get('users/{id}', 'App\Http\Controllers\UserController@show');
-});
-
-
-// Named Routes And Generating URLs
-$api->get('users/{id}', ['as' => 'users.index', 'uses' => 'Api\v1\UserController@show']);
-app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('users.index');

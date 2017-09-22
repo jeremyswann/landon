@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Transformers\UserTransformer;
 use Dingo\Api\Routing\Helpers;
+use App\Models\User;
 
-class UserController extends User
+class UserController extends Controller
 {
     use Helpers;
 
-    public function show($id)
+    public function getUsers()
     {
-        $user = User::findOrFail($id);
 
-        return $this->response->array($user->toArray());
+        $users = User::all();
+
+        return $this->response->collection($users, new UserTransformer);
+
     }
 }
