@@ -39,9 +39,10 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
 
-    $api->get('api/users', 'UserController@getUsers');
-});
-$api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
+    $api->get('api/v1/users', 'UserController@getUsers');
+    $api->get('api/v1/clients', 'ClientApiController@getClients');
+    $api->get('api/v1/clients/{id}', 'ClientApiController@getClientsID');
+    $api->post('api/v1/clients', 'ClientApiController@postClients');
+    $api->post('api/v1/clients/{id}', 'ClientApiController@postClientsID');
 
-    $api->get('api/clients', 'ClientController@getUsers');
 });
