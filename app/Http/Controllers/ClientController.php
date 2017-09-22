@@ -3,17 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Transformers\ClientTransformer;
+use Dingo\Api\Routing\Helpers;
 use App\Models\Title as Title;
 use App\Models\Client as Client;
 
 class ClientController extends Controller
 {
-    //
+    use Helpers;
+
     public function __construct( Title $titles, Client $client)
     {
         $this->titles = $titles->all();
         $this->client = $client;
     }
+
+    public function getClients()
+    {
+
+        $clients = $this->client->all();
+
+        return $this->response->collection($clients, new ClientTransformer);
+
+    }
+
     public function di()
     {
         dd($this->titles);
@@ -88,7 +101,7 @@ class ClientController extends Controller
         $data['city'] = $client_data->city;
         $data['state'] = $client_data->state;
         $data['email'] = $client_data->email;
-        $data['post_code'] =$client_data->post_code;
+        $data['post_code'] = $client_data->post_code;
 
         return view('client/form', $data);
     }

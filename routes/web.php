@@ -37,7 +37,11 @@ Route::get('/bookings/{client_id}', 'ReservationsController@show')->name('show_b
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', [], function ($api) {
+$api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
 
-    $api->get('users', 'App\Http\Controllers\Api\UserController@getUsers');
+    $api->get('api/users', 'UserController@getUsers');
+});
+$api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
+
+    $api->get('api/clients', 'ClientController@getUsers');
 });
